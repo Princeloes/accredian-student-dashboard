@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accredian Co-Lab | Student Dashboard</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Main CSS Styling -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+  
+  <!-- Main Dashboard Container -->
+  <div class="dashboard-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo">
+          <i class="fa-solid fa-graduation-cap logo-icon"></i>
+        </div>
+        <div class="brand-info">
+          <h2>Accredian</h2>
+          <span class="brand-tag">CO-LAB</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-user">
+        <div class="user-avatar-wrapper">
+          <div class="user-avatar">RP</div>
+          <span class="status-indicator online"></span>
+        </div>
+        <div class="user-details">
+          <h4>Rohan Patel</h4>
+          <p>Cohort: PM-2026-A</p>
+        </div>
+      </div>
+      
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="menu-item active" data-tab="overview">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Overview</span>
+          </li>
+          <li class="menu-item" data-tab="pulse">
+            <i class="fa-solid fa-comments"></i>
+            <span>Pulse Chat</span>
+            <span class="badge badge-pulse">3</span>
+          </li>
+          <li class="menu-item" data-tab="synergy">
+            <i class="fa-solid fa-circle-nodes"></i>
+            <span>Synergy Matcher</span>
+            <span class="badge badge-synergy">New</span>
+          </li>
+          <li class="menu-item" data-tab="canvas">
+            <i class="fa-solid fa-compass-drafting"></i>
+            <span>Canvas Workspace</span>
+          </li>
+          <li class="menu-item" data-tab="spotlight">
+            <i class="fa-solid fa-address-card"></i>
+            <span>Spotlight Profile</span>
+          </li>
+          <li class="menu-item" data-tab="quest">
+            <i class="fa-solid fa-trophy"></i>
+            <span>Quest Hub</span>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="points-summary">
+          <i class="fa-solid fa-gem points-icon"></i>
+          <div>
+            <span class="points-label">Accredian Points</span>
+            <h3 class="points-value" id="sidebar-points-val">420 AP</h3>
+          </div>
+        </div>
+        <div class="theme-toggle" id="theme-toggle-btn">
+          <i class="fa-solid fa-moon"></i>
+          <span>Dark Mode</span>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Navigation Header -->
+      <header class="top-header">
+        <div class="header-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search cohorts, skills, documents...">
+        </div>
+        <div class="header-actions">
+          <div class="header-stat">
+            <i class="fa-solid fa-bolt text-warning"></i>
+            <span>Level 4</span>
+          </div>
+          
+          <div class="header-icon-btn notifications-trigger" id="notif-btn">
+            <i class="fa-regular fa-bell"></i>
+            <span class="badge-dot"></span>
+            
+            <!-- Notifications Dropdown -->
+            <div class="dropdown-panel" id="notif-dropdown">
+              <div class="dropdown-header">
+                <h3>Notifications</h3>
+                <span class="mark-read">Mark all read</span>
+              </div>
+              <div class="dropdown-list">
+                <div class="dropdown-item unread">
+                  <div class="notif-icon synergy"><i class="fa-solid fa-circle-nodes"></i></div>
+                  <div class="notif-content">
+                    <p><strong>Sneha Sen</strong> requested a Synergy connection with you.</p>
+                    <span class="notif-time">2 mins ago</span>
+                  </div>
+                </div>
+                <div class="dropdown-item unread">
+                  <div class="notif-icon quest"><i class="fa-solid fa-trophy"></i></div>
+                  <div class="notif-content">
+                    <p>Daily Quest: <strong>Join Study Room</strong> completed! +50 AP earned.</p>
+                    <span class="notif-time">1 hour ago</span>
+                  </div>
+                </div>
+                <div class="dropdown-item">
+                  <div class="notif-icon chat"><i class="fa-solid fa-comments"></i></div>
+                  <div class="notif-content">
+                    <p><strong>Mentor Abhishek</strong> replied in #ask-a-mentor thread.</p>
+                    <span class="notif-time">4 hours ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="header-icon-btn study-rooms-trigger" id="rooms-trigger-btn">
+            <i class="fa-solid fa-headset"></i>
+            <span class="active-indicator"></span>
+            <span class="tooltip-text">Active Study Rooms</span>
+          </div>
+        </div>
+      </header>
+      
+      <!-- View Sections -->
+      <div class="content-wrapper">
+        
+        <!-- SECTION 1: OVERVIEW -->
+        <section id="tab-overview" class="tab-pane active">
+          <div class="pane-header animate-slide-down">
+            <h1>Welcome back, Rohan! 👋</h1>
+            <p>Here's what's happening in the Accredian community today.</p>
+          </div>
+          
+          <!-- Key Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-card glass animate-fade-in" style="animation-delay: 0.1s">
+              <div class="stat-icon-wrapper gem"><i class="fa-solid fa-gem"></i></div>
+              <div class="stat-info">
+                <h3>420</h3>
+                <p>Accredian Points (AP)</p>
+              </div>
+              <div class="stat-chart"><span class="stat-trend positive">+15% this week</span></div>
+            </div>
+            
+            <div class="stat-card glass animate-fade-in" style="animation-delay: 0.2s">
+              <div class="stat-icon-wrapper connections"><i class="fa-solid fa-circle-nodes"></i></div>
+              <div class="stat-info">
+                <h3 id="stat-connections-count">14</h3>
+                <p>Synergy Connections</p>
+              </div>
+              <div class="stat-chart"><span class="stat-trend positive">3 pending requests</span></div>
+            </div>
+            
+            <div class="stat-card glass animate-fade-in" style="animation-delay: 0.3s">
+              <div class="stat-icon-wrapper rank"><i class="fa-solid fa-trophy"></i></div>
+              <div class="stat-info">
+                <h3>#12</h3>
+                <p>Cohort Rank (Top 8%)</p>
+              </div>
+              <div class="stat-chart"><span class="stat-trend positive">+2 spots up</span></div>
+            </div>
+            
+            <div class="stat-card glass animate-fade-in" style="animation-delay: 0.4s">
+              <div class="stat-icon-wrapper active-rooms"><i class="fa-solid fa-headset"></i></div>
+              <div class="stat-info">
+                <h3>4</h3>
+                <p>Active Study Rooms</p>
+              </div>
+              <div class="stat-chart"><span class="join-room-badge" onclick="navigateToTab('pulse')">Join now</span></div>
+            </div>
+          </div>
+          
+          <!-- Two Column Overview Layout -->
+          <div class="overview-grid">
+            <!-- Left Column: Tasks & Progress -->
+            <div class="overview-main glass animate-fade-in" style="animation-delay: 0.5s">
+              <div class="card-header">
+                <h2><i class="fa-solid fa-compass-drafting text-primary"></i> Team Capstone Workspace (Preview)</h2>
+                <button class="btn btn-text" onclick="navigateToTab('canvas')">Go to Canvas <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+              <div class="workspace-preview">
+                <div class="preview-project-info">
+                  <h4>Project Alpha: Product Design Case Study</h4>
+                  <div class="project-members">
+                    <span class="member-avatar tooltip" data-tooltip="Rohan Patel (You)">RP</span>
+                    <span class="member-avatar tooltip" data-tooltip="Sneha Sen">SS</span>
+                    <span class="member-avatar tooltip" data-tooltip="Amit Kumar">AK</span>
+                    <button class="add-member-btn"><i class="fa-solid fa-plus"></i></button>
+                  </div>
+                </div>
+                <div class="preview-task-list">
+                  <div class="preview-task-item completed">
+                    <div class="task-checkbox"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="task-info">
+                      <h5>Define target persona profiles</h5>
+                      <span class="task-tag research">Research</span>
+                    </div>
+                    <div class="task-assignee">SS</div>
+                  </div>
+                  <div class="preview-task-item">
+                    <div class="task-checkbox"><i class="fa-regular fa-circle"></i></div>
+                    <div class="task-info">
+                      <h5>Create Wireframe Mockups</h5>
+                      <span class="task-tag design">Design</span>
+                    </div>
+                    <div class="task-assignee">RP</div>
+                  </div>
+                  <div class="preview-task-item">
+                    <div class="task-checkbox"><i class="fa-regular fa-circle"></i></div>
+                    <div class="task-info">
+                      <h5>Draft final submission pitch deck</h5>
+                      <span class="task-tag deck">Pitch</span>
+                    </div>
+                    <div class="task-assignee">AK</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column: Quests & Leaderboard -->
+            <div class="overview-sidebar">
+              <div class="sidebar-panel glass animate-fade-in" style="animation-delay: 0.6s">
+                <div class="card-header">
+                  <h2><i class="fa-solid fa-star text-warning"></i> Active Quests</h2>
+                  <button class="btn btn-text" onclick="navigateToTab('quest')">View All</button>
+                </div>
+                <div class="panel-list">
+                  <div class="quest-item">
+                    <div class="quest-progress-radial" data-percent="0">
+                      <span class="radial-text">0%</span>
+                    </div>
+                    <div class="quest-text">
+                      <h4>Resolve 1 doubt</h4>
+                      <p>Reply in #ask-a-mentor. <strong class="ap-reward">+40 AP</strong></p>
+                    </div>
+                  </div>
+                  <div class="quest-item completed">
+                    <div class="quest-progress-radial" data-percent="100">
+                      <i class="fa-solid fa-circle-check text-success"></i>
+                    </div>
+                    <div class="quest-text">
+                      <h4>Join peer Study Room</h4>
+                      <p>Studied 25 minutes. <strong class="ap-reward">+50 AP</strong></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="sidebar-panel glass mt-4 animate-fade-in" style="animation-delay: 0.7s">
+                <div class="card-header">
+                  <h2><i class="fa-solid fa-fire text-danger"></i> Peer Study Rooms</h2>
+                </div>
+                <div class="panel-list font-size-sm">
+                  <div class="room-item">
+                    <div class="room-details">
+                      <span class="live-pulse"></span>
+                      <div>
+                        <h5>Data Science Study Circle</h5>
+                        <p class="text-muted">4 members online • Sneha hosting</p>
+                      </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary join-voice-btn" data-room="Data Science Study Circle">Join</button>
+                  </div>
+                  
+                  <div class="room-item">
+                    <div class="room-details">
+                      <span class="live-pulse"></span>
+                      <div>
+                        <h5>PM Capstone Brainstorming</h5>
+                        <p class="text-muted">3 members online • Amit hosting</p>
+                      </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary join-voice-btn" data-room="PM Capstone Brainstorming">Join</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- SECTION 2: PULSE CHAT -->
+        <section id="tab-pulse" class="tab-pane">
+          <div class="pulse-layout glass">
+            <!-- Channels/Sidebar -->
+            <div class="pulse-channels">
+              <div class="panel-header">
+                <h3>Communication Hub</h3>
+              </div>
+              
+              <!-- Channels Group -->
+              <div class="channels-group">
+                <span class="group-title">Channels</span>
+                <ul>
+                  <li class="channel-li active" data-channel="cohort-pm-2026">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <span>cohort-pm-2026-a</span>
+                  </li>
+                  <li class="channel-li" data-channel="project-alpha">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <span>project-alpha-capstone</span>
+                  </li>
+                  <li class="channel-li" data-channel="alumni-corner">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <span>alumni-corner</span>
+                  </li>
+                  <li class="channel-li" data-channel="ask-a-mentor">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <span>ask-a-mentor</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Voice Rooms Group -->
+              <div class="channels-group mt-4">
+                <span class="group-title">Live Study Rooms (Voice)</span>
+                <ul>
+                  <li class="voice-li" data-room="Data Science Study Circle">
+                    <i class="fa-solid fa-volume-high text-success"></i>
+                    <span>Data Science Study Circle</span>
+                    <span class="user-count">4</span>
+                  </li>
+                  <li class="voice-li" data-room="PM Capstone Brainstorming">
+                    <i class="fa-solid fa-volume-high text-success"></i>
+                    <span>PM Capstone Brainstorming</span>
+                    <span class="user-count">3</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Chat Window -->
+            <div class="pulse-chat-window">
+              <div class="chat-header">
+                <div class="chat-title-info">
+                  <h3 id="current-channel-title">#cohort-pm-2026-a</h3>
+                  <p id="current-channel-desc" class="text-muted text-sm">General chat for Product Management Cohort 2026 Batch A</p>
+                </div>
+                <div class="chat-actions">
+                  <button class="btn btn-icon"><i class="fa-solid fa-users"></i></button>
+                  <button class="btn btn-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+              </div>
+              
+              <!-- Messages View -->
+              <div class="chat-messages" id="chat-messages-container">
+                <!-- Messages populate here dynamically -->
+              </div>
+              
+              <!-- Message Input -->
+              <div class="chat-input-area">
+                <div class="input-actions-bar">
+                  <button class="btn btn-icon-sm"><i class="fa-solid fa-bold"></i></button>
+                  <button class="btn btn-icon-sm"><i class="fa-solid fa-italic"></i></button>
+                  <button class="btn btn-icon-sm"><i class="fa-solid fa-code"></i></button>
+                  <button class="btn btn-icon-sm"><i class="fa-solid fa-link"></i></button>
+                  <span class="divider">|</span>
+                  <button class="btn btn-icon-sm tooltip" data-tooltip="Reference Syllabus Topic"><i class="fa-solid fa-book-open"></i></button>
+                </div>
+                <form class="input-form" id="chat-send-form">
+                  <input type="text" id="chat-message-input" autocomplete="off" placeholder="Message #cohort-pm-2026-a...">
+                  <button type="submit" class="btn btn-primary btn-round"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+              </div>
+            </div>
+            
+            <!-- Voice Call Floating Overlay (hidden by default) -->
+            <div class="voice-call-overlay hidden" id="voice-overlay">
+              <div class="voice-call-header">
+                <span class="live-indicator"><span class="live-pulse"></span> Voice Connected</span>
+                <span class="room-name" id="voice-room-name">Data Science Study Circle</span>
+              </div>
+              <div class="voice-members-grid" id="voice-members-container">
+                <!-- Voice members populate dynamically -->
+              </div>
+              <div class="voice-call-controls">
+                <button class="btn btn-icon-round btn-danger disconnect-voice-btn" id="voice-hangup-btn">
+                  <i class="fa-solid fa-phone-slash"></i>
+                </button>
+                <button class="btn btn-icon-round btn-secondary toggle-mic-btn">
+                  <i class="fa-solid fa-microphone"></i>
+                </button>
+                <button class="btn btn-icon-round btn-secondary">
+                  <i class="fa-solid fa-desktop"></i>
+                </button>
+              </div>
+            </div>
+            
+          </div>
+        </section>
+        
+        <!-- SECTION 3: SYNERGY MATCHER -->
+        <section id="tab-synergy" class="tab-pane">
+          <div class="pane-header animate-slide-down">
+            <h1>Synergy Matcher</h1>
+            <p>Find study buddies and project partners based on shared interests, skills, and schedules.</p>
+          </div>
+          
+          <div class="synergy-container">
+            <!-- Matching Card Stack Panel -->
+            <div class="matcher-card-wrapper">
+              <div class="matcher-card glass" id="matcher-card">
+                <!-- Content will load dynamically from app.js -->
+              </div>
+              
+              <div class="matcher-actions-buttons">
+                <button class="btn-action-round reject" id="synergy-reject-btn" title="Skip Profile">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+                <button class="btn-action-round connect-action" id="synergy-connect-btn" title="Send Connect Request">
+                  <i class="fa-solid fa-bolt"></i>
+                  <span>Synergy</span>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Connection & Matches Sidebar -->
+            <div class="synergy-sidebar glass">
+              <h3><i class="fa-solid fa-link text-primary"></i> Active Connections (<span id="connections-count">2</span>)</h3>
+              <div class="connections-list" id="connections-list-container">
+                <!-- Matches list loaded dynamically -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pop-up match celebration overlay -->
+          <div class="match-overlay hidden" id="match-celebration">
+            <div class="match-celebration-card glass">
+              <div class="celebration-badge"><i class="fa-solid fa-fire-flame-curved"></i></div>
+              <h2>It's a Synergy Match!</h2>
+              <p>You and <strong id="match-peer-name">Sneha Sen</strong> have high skill synergy!</p>
+              
+              <div class="match-avatars">
+                <div class="avatar-holder user">RP</div>
+                <div class="avatar-holder partner" id="match-partner-avatar">SS</div>
+              </div>
+              
+              <p class="text-muted text-sm">We have created a shared project workspace and direct chat thread for you both.</p>
+              
+              <div class="celebration-actions">
+                <button class="btn btn-primary" id="btn-celebration-chat">Open Workspace</button>
+                <button class="btn btn-outline" id="btn-celebration-close">Keep Swiping</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- SECTION 4: CANVAS WORKSPACE -->
+        <section id="tab-canvas" class="tab-pane">
+          <div class="pane-header animate-slide-down">
+            <h1>Canvas Workspace</h1>
+            <p>Collaborate in real-time on assignments and Capstone Projects.</p>
+          </div>
+          
+          <div class="canvas-header-nav">
+            <div class="canvas-tabs">
+              <button class="btn-canvas-tab active" data-subtab="kanban"><i class="fa-solid fa-table-columns"></i> Kanban Board</button>
+              <button class="btn-canvas-tab" data-subtab="whiteboard"><i class="fa-solid fa-marker"></i> Interactive Whiteboard</button>
+            </div>
+            
+            <div class="canvas-project-selector">
+              <span class="text-muted text-sm">Current Team Space:</span>
+              <div class="project-indicator">
+                <i class="fa-solid fa-folder-open text-warning"></i>
+                <strong>Project Alpha (Capstone)</strong>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Workspace panes -->
+          <div class="canvas-wrapper">
+            
+            <!-- SUBTAB 1: KANBAN BOARD -->
+            <div id="subtab-kanban" class="canvas-pane active">
+              <div class="kanban-controls">
+                <button class="btn btn-primary" id="add-kanban-task-btn"><i class="fa-solid fa-plus"></i> Add New Task</button>
+              </div>
+              
+              <div class="kanban-board">
+                <!-- Column: To Do -->
+                <div class="kanban-column" id="col-todo" data-status="todo">
+                  <div class="column-header">
+                    <div class="header-title">
+                      <span class="status-dot todo"></span>
+                      <h4>To Do</h4>
+                    </div>
+                    <span class="column-count" id="count-todo">0</span>
+                  </div>
+                  <div class="column-cards" id="cards-todo">
+                    <!-- Cards will be populated here -->
+                  </div>
+                </div>
+                
+                <!-- Column: In Progress -->
+                <div class="kanban-column" id="col-inprogress" data-status="inprogress">
+                  <div class="column-header">
+                    <div class="header-title">
+                      <span class="status-dot in-progress"></span>
+                      <h4>In Progress</h4>
+                    </div>
+                    <span class="column-count" id="count-inprogress">0</span>
+                  </div>
+                  <div class="column-cards" id="cards-inprogress">
+                    <!-- Cards will be populated here -->
+                  </div>
+                </div>
+                
+                <!-- Column: Review -->
+                <div class="kanban-column" id="col-review" data-status="review">
+                  <div class="column-header">
+                    <div class="header-title">
+                      <span class="status-dot review"></span>
+                      <h4>In Review</h4>
+                    </div>
+                    <span class="column-count" id="count-review">0</span>
+                  </div>
+                  <div class="column-cards" id="cards-review">
+                    <!-- Cards will be populated here -->
+                  </div>
+                </div>
+                
+                <!-- Column: Completed -->
+                <div class="kanban-column" id="col-done" data-status="done">
+                  <div class="column-header">
+                    <div class="header-title">
+                      <span class="status-dot done"></span>
+                      <h4>Completed</h4>
+                    </div>
+                    <span class="column-count" id="count-done">0</span>
+                  </div>
+                  <div class="column-cards" id="cards-done">
+                    <!-- Cards will be populated here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- SUBTAB 2: WHITEBOARD -->
+            <div id="subtab-whiteboard" class="canvas-pane">
+              <div class="whiteboard-toolbar">
+                <div class="toolbar-section">
+                  <button class="btn btn-icon-sm tool-btn active" id="tool-select" title="Select Sticky Note"><i class="fa-solid fa-arrow-pointer"></i></button>
+                  <button class="btn btn-icon-sm tool-btn" id="tool-draw" title="Draw Tool"><i class="fa-solid fa-pencil"></i></button>
+                  <button class="btn btn-icon-sm tool-btn" id="tool-eraser" title="Eraser"><i class="fa-solid fa-eraser"></i></button>
+                </div>
+                <div class="toolbar-divider"></div>
+                <div class="toolbar-section">
+                  <button class="btn btn-sm btn-outline-primary" id="add-sticky-btn"><i class="fa-solid fa-note-sticky"></i> Sticky Note</button>
+                  <button class="btn btn-sm btn-outline" id="clear-board-btn"><i class="fa-solid fa-trash-can"></i> Clear Board</button>
+                </div>
+                <div class="toolbar-divider"></div>
+                <div class="toolbar-section brush-size-wrapper hidden" id="brush-controls">
+                  <label for="brush-size">Size:</label>
+                  <input type="range" id="brush-size" min="1" max="20" value="5">
+                  <div class="color-picker-circles">
+                    <span class="color-circle active" data-color="#6366f1" style="background-color: #6366f1"></span>
+                    <span class="color-circle" data-color="#10b981" style="background-color: #10b981"></span>
+                    <span class="color-circle" data-color="#f59e0b" style="background-color: #f59e0b"></span>
+                    <span class="color-circle" data-color="#ef4444" style="background-color: #ef4444"></span>
+                    <span class="color-circle" data-color="#ffffff" style="background-color: #ffffff"></span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="whiteboard-area-wrapper">
+                <!-- Sticky note layer -->
+                <div class="sticky-notes-layer" id="sticky-container">
+                  <!-- Dynamic notes populated here -->
+                </div>
+                <!-- Drawing Canvas -->
+                <canvas id="whiteboard-canvas"></canvas>
+              </div>
+            </div>
+            
+          </div>
+          
+          <!-- Task modal creator -->
+          <div class="modal-overlay hidden" id="task-modal">
+            <div class="modal-card glass">
+              <div class="modal-header">
+                <h3>Add New Capstone Task</h3>
+                <button class="close-modal-btn" id="close-task-modal"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+              <form id="task-form">
+                <div class="form-group">
+                  <label for="task-title">Task Title</label>
+                  <input type="text" id="task-title" required placeholder="e.g. Clean customer cohort datasets">
+                </div>
+                <div class="form-group-row">
+                  <div class="form-group">
+                    <label for="task-assignee">Assignee</label>
+                    <select id="task-assignee">
+                      <option value="RP">Rohan Patel (You)</option>
+                      <option value="SS">Sneha Sen</option>
+                      <option value="AK">Amit Kumar</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="task-tag">Category</label>
+                    <select id="task-tag">
+                      <option value="research">Research</option>
+                      <option value="design">Design</option>
+                      <option value="deck">Pitch Deck</option>
+                      <option value="analysis">Data Analysis</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-actions mt-4">
+                  <button type="button" class="btn btn-outline" id="btn-cancel-task">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Create Task</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+        
+        <!-- SECTION 5: SPOTLIGHT PORTFOLIO -->
+        <section id="tab-spotlight" class="tab-pane">
+          <div class="pane-header animate-slide-down">
+            <h1>Spotlight Profile</h1>
+            <p>Your verified digital portfolio. Complete capstone milestones to unlock peer credentials and share to LinkedIn.</p>
+          </div>
+          
+          <div class="spotlight-grid">
+            
+            <!-- Left: Digital Profile Card -->
+            <div class="spotlight-card-left glass animate-fade-in" style="animation-delay: 0.1s">
+              <div class="portfolio-profile-header">
+                <div class="portfolio-avatar">RP</div>
+                <h2>Rohan Patel</h2>
+                <p class="profile-title">Aspiring Product Manager • MBA '25</p>
+                <div class="profile-meta">
+                  <span><i class="fa-solid fa-location-dot"></i> Mumbai, India</span>
+                  <span><i class="fa-solid fa-graduation-cap"></i> Cohort PM-2026-A</span>
+                </div>
+                <button class="btn btn-primary btn-full-width mt-4" id="linkedin-share-btn">
+                  <i class="fa-brands fa-linkedin"></i> Share Verified Profile to LinkedIn
+                </button>
+              </div>
+              
+              <div class="portfolio-section">
+                <h3>Verified Credentials (Accredian Auto-Link)</h3>
+                <div class="credentials-badge-list">
+                  <div class="credential-item verified">
+                    <div class="cred-icon"><i class="fa-solid fa-award"></i></div>
+                    <div class="cred-info">
+                      <h5>PM Core Concepts: A+ Grade</h5>
+                      <p>Verified by Faculty Abhishek • Feb 2026</p>
+                    </div>
+                  </div>
+                  <div class="credential-item verified">
+                    <div class="cred-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                    <div class="cred-info">
+                      <h5>PRD Excellence Certification</h5>
+                      <p>Verified by Accredian Committee • April 2026</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right: Interactive Skill & Peer Testimonials -->
+            <div class="spotlight-card-right">
+              
+              <div class="glass animate-fade-in" style="animation-delay: 0.2s">
+                <div class="card-header">
+                  <h2>Product Competency Index</h2>
+                </div>
+                <div class="skills-index-grid">
+                  <div class="skill-index-item">
+                    <div class="skill-index-header">
+                      <span>Market Research & Personas</span>
+                      <strong>85%</strong>
+                    </div>
+                    <div class="progress-bar-container">
+                      <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-index-item">
+                    <div class="skill-index-header">
+                      <span>Product Design & Wireframing</span>
+                      <strong>70%</strong>
+                    </div>
+                    <div class="progress-bar-container">
+                      <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-index-item">
+                    <div class="skill-index-header">
+                      <span>Data Analytics & KPIs</span>
+                      <strong>60%</strong>
+                    </div>
+                    <div class="progress-bar-container">
+                      <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-index-item">
+                    <div class="skill-index-header">
+                      <span>Agile Methodologies & Kanban</span>
+                      <strong>90%</strong>
+                    </div>
+                    <div class="progress-bar-container">
+                      <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="glass mt-4 animate-fade-in" style="animation-delay: 0.3s">
+                <div class="card-header">
+                  <h2>Peer Endorsements & Badges</h2>
+                </div>
+                <div class="endorsements-flex">
+                  <div class="badge-tag tooltip" data-tooltip="Endorsed by 4 team members for excellent PM insights">
+                    <i class="fa-solid fa-lightbulb text-warning"></i> Concept Architect (4)
+                  </div>
+                  <div class="badge-tag tooltip" data-tooltip="Endorsed by 3 team members for smooth team operations">
+                    <i class="fa-solid fa-users text-primary"></i> Team Catalyst (3)
+                  </div>
+                  <div class="badge-tag tooltip" data-tooltip="Endorsed by 2 team members for strong public presentations">
+                    <i class="fa-solid fa-bullhorn text-danger"></i> Pitch Champion (2)
+                  </div>
+                </div>
+                
+                <div class="testimonials-list mt-4">
+                  <h3>Capstone Peer Testimonials</h3>
+                  
+                  <div class="testimonial-bubble">
+                    <p>"Rohan was highly detailed with creating user journey maps and organizing our task backlog during the Canvas exercises. Awesome team-player!"</p>
+                    <div class="testimonial-author">
+                      <strong>Sneha Sen</strong> • Senior Analyst & Cohort Peer
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <!-- LinkedIn share pop-up notification -->
+          <div class="toast-notification hidden" id="toast-notif">
+            <i class="fa-solid fa-circle-check toast-icon"></i>
+            <span class="toast-message">LinkedIn sharing integration successful! Verified portfolio link exported.</span>
+          </div>
+        </section>
+        
+        <!-- SECTION 6: QUEST HUB -->
+        <section id="tab-quest" class="tab-pane">
+          <div class="pane-header animate-slide-down">
+            <h1>Quest Hub</h1>
+            <p>Earn XP and Accredian Points (AP) by contributing to the cohort and hitting course milestones. Redeem AP for exclusive rewards.</p>
+          </div>
+          
+          <div class="quest-hub-layout">
+            <!-- Left: Progress and Quests -->
+            <div class="quest-main-panel">
+              <!-- Level Progress Card -->
+              <div class="level-progress-card glass animate-fade-in" style="animation-delay: 0.1s">
+                <div class="level-badge-large">Lvl 4</div>
+                <div class="level-stats">
+                  <h2>Rohan Patel</h2>
+                  <p>XP: <strong id="xp-val">370</strong> / 500 XP to Level 5</p>
+                  <div class="progress-bar-container active">
+                    <div class="progress-fill pulsing" id="xp-progress-bar" style="width: 74%"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Daily & Weekly Quests -->
+              <div class="quests-list-panel glass mt-4 animate-fade-in" style="animation-delay: 0.2s">
+                <div class="card-header">
+                  <h2>Daily Quests</h2>
+                  <span class="reset-time"><i class="fa-solid fa-clock"></i> Resets in 11 hours</span>
+                </div>
+                
+                <div class="quest-detail-items">
+                  <!-- Quest 1 -->
+                  <div class="quest-detail-card" id="quest-card-ask">
+                    <div class="quest-chk"><i class="fa-regular fa-circle" id="chk-quest-ask"></i></div>
+                    <div class="quest-body">
+                      <h4>Answer 1 doubt in #ask-a-mentor</h4>
+                      <p>Share your knowledge and help a peer solve a concept hurdle.</p>
+                      <div class="quest-reward-row">
+                        <span class="reward-pill xp">+50 XP</span>
+                        <span class="reward-pill ap">+40 AP</span>
+                      </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary btn-quest-action" id="btn-quest-ask" onclick="navigateToTab('pulse')">Go to Chat</button>
+                  </div>
+                  
+                  <!-- Quest 2 (completed) -->
+                  <div class="quest-detail-card completed" id="quest-card-voice">
+                    <div class="quest-chk"><i class="fa-solid fa-circle-check text-success"></i></div>
+                    <div class="quest-body">
+                      <h4>Join peer Study Room</h4>
+                      <p>Engage in active collaborative studying for at least 15 minutes.</p>
+                      <div class="quest-reward-row">
+                        <span class="reward-pill xp">+60 XP</span>
+                        <span class="reward-pill ap">+50 AP</span>
+                      </div>
+                    </div>
+                    <span class="quest-status-text">Completed</span>
+                  </div>
+                  
+                  <!-- Quest 3 (completed) -->
+                  <div class="quest-detail-card completed" id="quest-card-kanban">
+                    <div class="quest-chk"><i class="fa-solid fa-circle-check text-success"></i></div>
+                    <div class="quest-body">
+                      <h4>Organize 3 Kanban cards in Canvas</h4>
+                      <p>Maintain your team task workflow board.</p>
+                      <div class="quest-reward-row">
+                        <span class="reward-pill xp">+30 XP</span>
+                        <span class="reward-pill ap">+20 AP</span>
+                      </div>
+                    </div>
+                    <span class="quest-status-text">Completed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right: Rewards Shop -->
+            <div class="rewards-shop-panel glass animate-fade-in" style="animation-delay: 0.3s">
+              <div class="card-header">
+                <h2>AP Rewards Shop</h2>
+              </div>
+              <p class="text-muted text-sm px-4">Redeem your hard-earned points for professional feedback and exclusive swag.</p>
+              
+              <div class="rewards-list">
+                
+                <div class="reward-card">
+                  <div class="reward-card-info">
+                    <h5>Professional Resume Critique</h5>
+                    <p class="text-muted">A PM mentor will review your resume and give video feedback.</p>
+                  </div>
+                  <button class="btn btn-sm btn-primary redeem-btn" data-cost="500" data-reward="Professional Resume Critique">
+                    <i class="fa-solid fa-gem"></i> 500 AP
+                  </button>
+                </div>
+                
+                <div class="reward-card">
+                  <div class="reward-card-info">
+                    <h5>Mock Interview: Google PM</h5>
+                    <p class="text-muted">1-on-1 mock product design/strategy interview with an expert.</p>
+                  </div>
+                  <button class="btn btn-sm btn-primary redeem-btn" data-cost="1000" data-reward="Mock Interview: Google PM">
+                    <i class="fa-solid fa-gem"></i> 1000 AP
+                  </button>
+                </div>
+                
+                <div class="reward-card">
+                  <div class="reward-card-info">
+                    <h5>Accredian Elite Hoodie</h5>
+                    <p class="text-muted">High-quality branded cohort sweatshirt.</p>
+                  </div>
+                  <button class="btn btn-sm btn-primary redeem-btn" data-cost="1500" data-reward="Accredian Elite Hoodie">
+                    <i class="fa-solid fa-gem"></i> 1500 AP
+                  </button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+          <!-- Rewards Success Modal -->
+          <div class="modal-overlay hidden" id="rewards-modal">
+            <div class="modal-card glass text-center">
+              <div class="rewards-success-icon"><i class="fa-solid fa-circle-check text-success"></i></div>
+              <h2>Reward Redeemed!</h2>
+              <p>You have successfully unlocked <strong id="unlocked-reward-name">Professional Resume Critique</strong>!</p>
+              <p class="text-muted text-sm">We have sent a confirmation email to Rohan Patel with instructions on how to claim your reward.</p>
+              <div class="mt-4">
+                <button class="btn btn-primary" id="btn-close-rewards-modal">Awesome</button>
+              </div>
+            </div>
+          </div>
+          
+        </section>
+        
+      </div>
+      
+    </main>
+    
+  </div>
+
+  <!-- JavaScript logic loaded asynchronously -->
+  <script src="app.js"></script>
+</body>
+</html>
